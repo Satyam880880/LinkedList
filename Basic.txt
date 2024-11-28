@@ -1,0 +1,118 @@
+
+class ll{
+  Node head;
+
+  // size
+  private int size;
+
+  ll(){
+    this.size = 0;
+  }
+  
+  class Node {
+    String data;
+    Node next;
+
+    Node(String data){
+      this.data = data;
+      this.next = null;
+
+      size++;
+    }
+  }
+
+// add first
+
+public void addFirst(String data){
+  Node newNode = new Node(data);
+if(head == null){
+  head = newNode;
+  return;
+}
+newNode.next = head;
+head = newNode;
+}
+// add last
+
+public void addLast(String data){
+  Node newNode = new Node(data);
+  if(head == null){
+    head = newNode;
+    return;
+  }
+  Node currNode = head;
+  while(currNode.next != null){
+    currNode = currNode.next;
+  }
+  currNode.next = newNode;
+}
+// print 
+
+public void printList(){
+  if(head == null){
+    System.out.print("list is empty");
+  }
+  Node currNode = head;
+  while(currNode != null){
+    System.out.print(currNode.data + "->");
+    currNode = currNode.next;
+  }
+  System.out.print("NULL");
+}
+// DeleteFirst
+
+  public void deleteFirst(){
+    if(head == null){
+      System.out.print("list is empty");
+      return;
+    }
+    size--;
+    head = head.next;
+  }
+  // DealeteLast
+
+  public void deleteLast(){
+    if(head == null){
+      System.out.print("list is empty");
+      return;
+    }
+
+    size--;
+    
+    if(head.next == null){  // single Node
+      head = null;
+      return;
+    }
+    Node secNode = head;
+    Node firstNode = head.next;  // head.next = null -> firstNode = null
+    while(firstNode.next != null){  // null.next = error
+      secNode = secNode.next;
+      firstNode = firstNode.next;
+    }
+    secNode.next = null;
+  }
+
+  // size
+  public int getSize(){
+    return size;
+  }
+public static void main(String[] args){
+  ll  list = new ll();
+  list.addFirst("satyam");
+  list.addFirst("Maurya");
+  list.printList();
+  System.out.println();
+  
+  list.addLast("read");
+  list.addLast("LinkedList");
+   list.printList();
+   System.out.println();
+  
+  list.deleteFirst();
+   list.printList();
+  System.out.println();
+  
+  list.getSize();
+   System.out.println(list.getSize());
+}
+}
